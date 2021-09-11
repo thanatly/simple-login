@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import './App.css';
 import fire from './fire';
-import './App.css'
+import './App.css';
 import Login from './Login';
-require('dotenv').config()
+import Hero from './Hero';
 
+require('dotenv').config()
 
 function App() {
   const [user, setUser]= useState('');
@@ -82,18 +83,22 @@ function App() {
 
   return (
     <div className="App">
-      <Login  
-      email={email} 
-      setEmail={setEmail} 
-      password={password} 
-      setPassword={setPassword} 
-      handleLogin={handleLogin} 
-      handleSignup={handleSignup} 
-      hasAccount={hasAccount}
-      setHasAccount={setHasAccount}
-      emailError={emailError}
-      passwordError={passwordError}
+      { user ? (
+        <Hero handleLogout={handleLogout}/>
+      ) : (
+        <Login  
+          email={email} 
+          setEmail={setEmail} 
+          password={password} 
+          setPassword={setPassword} 
+          handleLogin={handleLogin} 
+          handleSignup={handleSignup} 
+          hasAccount={hasAccount}
+          setHasAccount={setHasAccount}
+          emailError={emailError}
+          passwordError={passwordError}
       />
+      )}    
     </div>
   );
 }
